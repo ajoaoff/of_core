@@ -1,4 +1,5 @@
 """Utilities module for of_core OpenFlow v0x01 operations."""
+from pyof.v0x01.common.phy_port import Port
 from pyof.v0x01.controller2switch.common import (ConfigFlag, FlowStatsRequest,
                                                  PortStatsRequest)
 from pyof.v0x01.controller2switch.set_config import SetConfig
@@ -37,7 +38,7 @@ def request_port_stats(controller, switch):
         switch(:class:`~kytos.core.switch.Switch`):
             target to send a stats request.
     """
-    body = PortStatsRequest()
+    body = PortStatsRequest(port_no=Port.OFPP_NONE)
     stats_request = StatsRequest(
         body_type=StatsType.OFPST_PORT,
         body=body)
